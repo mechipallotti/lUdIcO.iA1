@@ -43,11 +43,13 @@ class Circulos {
 
     pop();
 
+    push();
     fill(222);
     textAlign(CENTER);
     textSize(16);
     text("CHUSEMA LA FLECHA ARRIBA o FLECHA ABAJO ", width / 2, height - 30);
     text("<- 4", 20, 0);
+    pop();
   }
 
   handleKeyPressed() {

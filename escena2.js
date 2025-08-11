@@ -8,7 +8,10 @@ class Onion {
      this.tiempo0 = 3;
      this.cantidad = 20;
      this.grilla();
+     this.sonido = new Sonido();
     }
+
+  
 
     grilla(){
        for(let i=0; i<this.cantidad; i++){
@@ -21,6 +24,9 @@ class Onion {
 
 
     draw(){
+
+        
+    this.sonido.draw();
 
         background(250);
             
@@ -108,4 +114,21 @@ class Poligonos {
         }
         }
     
+
+        class Sonido{
+        constructor(){
+            this.oscilador = new p5.Oscillator();
+            this.play = false;
+        }
+        
+
+        draw() {
+            this.oscilador.start();
+            this.oscilador.freq(midiToFreq(60));
+            this.oscilador.amp(0.5);
+        }
+    
+
+    }
+        
 
