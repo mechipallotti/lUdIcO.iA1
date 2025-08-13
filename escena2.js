@@ -1,14 +1,17 @@
 
 
-class Onion {
+class Pantalla02 extends Pantalla{
     constructor(){
+     super();
      this.cebolla = [];
      this.sides0 = 3;    this.sideInc = 1;
      this.radio0 = 30 ;  this.radioInc = 10;
      this.tiempo0 = 3;
      this.cantidad = 20;
-     this.grilla();
-     this.sonido = new Sonido();
+
+     this.midiNotes = [55, 60, 64, 67,  72, 79, 84, 88, 91];
+
+       this.grilla();
     }
 
   
@@ -18,15 +21,15 @@ class Onion {
             let sides = this.sides0 + i*this.sideInc;
             let radio = this.radio0 + i*this.radioInc;
             let tiempo = this.tiempo0 * (i + i);
-            this.cebolla.push(new Poligonos(sides, radio, tiempo));
+            let note = this.midiNotes[i % this.midiNotes.length];
+            this.cebolla.push(new Poligonos(sides, radio, tiempo, note));
         }
    }
 
 
     draw(){
 
-        
-    this.sonido.draw();
+    
 
         background(250);
             
@@ -42,16 +45,44 @@ class Onion {
         text("CEBOLLITA MUSICAL", width / 2, height - 30);
         text("<- 4", 20, 0)
     }
+
+     keyPressed() {
+    if (key === '5') nav.previaPantalla();
+    else if (key === '1') nav.seleccionarPantalla(1);
+    else if (key === '2') nav.seleccionarPantalla(2);
+    else if (key === '3') nav.seleccionarPantalla(3);
+    else if (key === '4') nav.seleccionarPantalla(0);
+  }
+
+  onExit(){
+    for (let i = 0; i < this.cebolla.length; i ++){
+        this.cebolla[i].stop();
+    }
+}
 }
 
+
+
+
+
 class Poligonos {
-        constructor(sides, radio, tiempo){
+        constructor(sides, radio, tiempo, note){
             this.sides = sides;
             this.radio = radio;
             this.angle = 0
             this.tiempo = tiempo;
+            this.note = note;
 
             this.interaccion0 = false;
+
+            // variables para el sonido
+            
+           
+            this.osc = new p5.Oscillator();
+            this.osc.start();
+            this.osc.freq(midiToFreq(this.note));
+            this.osc.amp(0);
+
         }
 
         update(){
@@ -59,8 +90,10 @@ class Poligonos {
             
             if(this.interaccion()){
                 this.interaccion0 = true; 
+                this.osc.amp(1, 0.05);
             } else {
                 this.interaccion0 = false;
+                this.osc.amp(0, 0.05);
             }
         }
 
@@ -78,7 +111,7 @@ class Poligonos {
             push();
             translate(width / 2, height/ 2 );
             rotate(this.angle);
-           12
+           
 
             beginShape();
             for (let i = 0; i<this.sides; i++){
@@ -112,23 +145,12 @@ class Poligonos {
 
             return false;
         }
+
+        stop() {
+            this.osc.amp(0);
         }
+ }
+
     
-
-        class Sonido{
-        constructor(){
-            this.oscilador = new p5.Oscillator();
-            this.play = false;
-        }
-        
-
-        draw() {
-            this.oscilador.start();
-            this.oscilador.freq(midiToFreq(60));
-            this.oscilador.amp(0.5);
-        }
-    
-
-    }
         
 

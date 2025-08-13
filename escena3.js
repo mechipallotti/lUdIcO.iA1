@@ -1,9 +1,10 @@
 
 
-class Webcam {
+class Pantalla03 extends Pantalla {
   constructor() {
-    this.w = 54;
-    this.h = 38;
+    super();
+    this.w = 84;
+    this.h = 68;
     this.escala = 10;
     this.paleta;
   
@@ -20,9 +21,7 @@ class Webcam {
     this.video.loadPixels();
 
     push();
-    translate(35,50)
-   
-
+  
     noStroke();
     
     //GRILLA
@@ -54,6 +53,14 @@ class Webcam {
     text("WEBCAM 2", width / 2, height - 30);
     text("<- 4", 20, 0)
   }
+
+    keyPressed() {
+    if (key === '1') nav.seleccionarPantalla(1);
+    else if (key === '2') nav.seleccionarPantalla(2);
+    else if (key === '3') nav.seleccionarPantalla(3);
+    else if (key === '4') nav.seleccionarPantalla(0);
+  }
+
 
   onEnter() {
     this.boton.show(); // ✅ mostrar botón al entrar en escena

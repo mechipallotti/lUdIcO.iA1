@@ -1,5 +1,6 @@
-class Circulos {
+class Pantalla01 extends Pantalla {
   constructor() {
+    super();
     this.num = 30;
     this.margen = 50; 
     this.forma = 1; 
@@ -44,7 +45,7 @@ class Circulos {
     pop();
 
     push();
-    fill(222);
+    fill(200);
     textAlign(CENTER);
     textSize(16);
     text("CHUSEMA LA FLECHA ARRIBA o FLECHA ABAJO ", width / 2, height - 30);
@@ -52,11 +53,13 @@ class Circulos {
     pop();
   }
 
-  handleKeyPressed() {
-    if (keyCode === UP_ARROW) {
-      this.num = constrain(this.num + 5, 10, 100); // límite para evitar círculos enormes
-    } else if (keyCode === DOWN_ARROW) {
-      this.forma = random(0.5, 2);
-    }
+
+
+  keyPressed() {
+    if (keyCode === UP_ARROW) this.num = constrain(this.num + 5, 10, 100);
+    else if (keyCode === DOWN_ARROW) this.forma = random(0.5, 2);
+    else if (key === '2') nav.seleccionarPantalla(2);
+    else if (key === '3') nav.seleccionarPantalla(3);
+    else if (key === '4') nav.seleccionarPantalla(0);
   }
 }
