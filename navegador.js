@@ -11,32 +11,48 @@ class Navegador {
     if(!this.pantallaActual){
       this.indicePantalla = 0;
       this.pantallaActual = p;
-      if(this.pantallaActual.onEnter) this.pantallaActual.onEnter()
+      if(this.pantallaActual.onEnter) this.pantallaActual.onEnter();
     }
   }
   
   siguientePantalla(){
-    let i =(this.indicePantalla + 1) % this.pantallas.length;
+    // Llamo onExit de la pantalla actual
+    if (this.pantallaActual?.onExit) this.pantallaActual.onExit();
+
+    let i = (this.indicePantalla + 1) % this.pantallas.length;
     this.indicePantalla = i;
-    this.pantallaActual = this.pantallas [i];
+    this.pantallaActual = this.pantallas[i];
+
+    // Llamo onEnter de la nueva pantalla
+    if (this.pantallaActual?.onEnter) this.pantallaActual.onEnter();
   }
 
   previaPantalla(){
+ // Llamo onExit de la pantalla actual
+    if (this.pantallaActual?.onExit) this.pantallaActual.onExit();
+
     let i = this.indicePantalla - 1;
-    if (i <0) { i = this.pantallas.lenght - 1}
+    if (i < 0) i = this.pantallas.length - 1;
+
     this.indicePantalla = i;
-    this.pantallaActual = this.pantalla[i];
+    this.pantallaActual = this.pantallas[i];
+
+    // Llamo onEnter de la nueva pantalla
+    if (this.pantallaActual?.onEnter) this.pantallaActual.onEnter();
   }
 
   seleccionarPantalla(i){
-    if ( i >= 0 && i < this.pantallas.length) {
-
-        if (this.pantallaActual?.onExit) this.pantallaActual.onExit(); 
+  if (i >= 0 && i < this.pantallas.length) {
+      // Llamo onExit de la pantalla actual
+      if (this.pantallaActual?.onExit) this.pantallaActual.onExit();
 
       this.indicePantalla = i;
       this.pantallaActual = this.pantallas[i];
+
+      // Llamo onEnter de la nueva pantalla
+      if (this.pantallaActual?.onEnter) this.pantallaActual.onEnter();
     } else {
-      print ('ERROR INDICE DE PANTALLA FUERA DE RANGO')
+      print('ERROR INDICE DE PANTALLA FUERA DE RANGO');
     }
     }
   }
@@ -50,6 +66,8 @@ class Pantalla {
   draw(){}
   mousePressed(){}
   keyPressed(){}
+  onEnter(){};
+  onExit(){};
 
 }
 

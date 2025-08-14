@@ -5,20 +5,18 @@ class PantallaInicio extends Pantalla {
 
      draw() {
 
-    background('#003477e9');
+    background('#dcdcdce9');
 
       textFont(font)
       textAlign(CENTER, TOP);
-      fill(255);
-      push()
-      textSize(20);
-      text("UN MIX DE APRENDIZAJE PUESTA PARA LA EXPERIENCIA LUDICA", windowWidth / 2, windowHeight/ 8);
-      pop()
-      text("en este campo ludico usted puede interactuar con las teclas que van del 1 al 4; experimente lo que desee.", windowWidth / 2, windowHeight /8 + 50)
+      fill('#001664ff');
+      textSize(16)
+      text("en este campo ludico usted puede interactuar de las siguientes formas: \n \n 1. con las teclas que van del 1 al 4 \n 2. con las flechas <- o -> respectivamente. \n 3. experimentando", windowWidth / 2, windowHeight /8)
 
       
-      // TIPOGRAFIA PARA EL RESTO DEL NAVEGADOR
-      textSize(16)
+ 
+     
+      
    
 
 
@@ -26,19 +24,15 @@ class PantallaInicio extends Pantalla {
 
       if (miniatura1) {
       image(miniatura1, width / 5, height / 2, 300, 300);
-      text("- PRESIONE 1  -", width / 5 , height / 2 + 150);
     }
     if (miniatura2) {
       image(miniatura2, width / 2, height / 2, 300, 300);
-      text("- PRESIONE 2 -", width / 2, height / 2 + 150);
     }
     if (miniatura3) {
       image(miniatura3, 3 * width / 3.7, height / 2, 300, 300);
-      text("- PRESIONE 3 -", 3 * width / 3.7, height / 2 + 150);
     }
 
-
-    text("UNA MULTIMEDIALES / MERCEDES PALLOTTI MIRANDA / IA1-TP1.", windowWidth / 2, windowHeight /2 + 380);
+    text("UNA MULTIMEDIALES / MERCEDES PALLOTTI MIRANDA / IA1-TP1.", windowWidth / 2, windowHeight /2 + 300);
   }
 
   keyPressed(){
@@ -47,6 +41,9 @@ class PantallaInicio extends Pantalla {
     else if (key === '2') nav.seleccionarPantalla(2);
     else if (key === '3') nav.seleccionarPantalla(3);
     else if (key === '4') nav.seleccionarPantalla(0);
+
+     else if (keyCode === RIGHT_ARROW) nav.siguientePantalla();
+    else if (keyCode === LEFT_ARROW) nav.previaPantalla();
   }
 
 }

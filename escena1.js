@@ -6,6 +6,7 @@ class Pantalla01 extends Pantalla {
     this.forma = 1; 
     this.paletadeColor = ["#FFFFFF", "#CCE7FF", "#99D0FF", "#66B8FF", "#339FFF", "#0077FF", "#0055AA", "#003377"];
     this.dReferencia = 100;
+    this.clickSound = clickSound; 
   }
 
   calcularSize() {
@@ -56,10 +57,18 @@ class Pantalla01 extends Pantalla {
 
 
   keyPressed() {
-    if (keyCode === UP_ARROW) this.num = constrain(this.num + 5, 10, 100);
-    else if (keyCode === DOWN_ARROW) this.forma = random(0.5, 2);
+    if (keyCode === UP_ARROW){ 
+      this.num = constrain(this.num + 5, 10, 100);
+      this.clickSound.play(0, 1, 0.3);
+    } else if (keyCode === DOWN_ARROW){ 
+      this.forma = random(0.5, 2);
+      this.clickSound.play(0, 1, 0.3);
+    } 
     else if (key === '2') nav.seleccionarPantalla(2);
     else if (key === '3') nav.seleccionarPantalla(3);
     else if (key === '4') nav.seleccionarPantalla(0);
+
+     else if (keyCode === RIGHT_ARROW) nav.siguientePantalla();
+    else if (keyCode === LEFT_ARROW) nav.previaPantalla();
   }
 }
