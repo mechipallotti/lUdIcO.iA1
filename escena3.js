@@ -1,3 +1,10 @@
+// Clase Pantalla03
+// Escena con captura de webcam pixelada
+// - Interacción: botones para guardar imagen e invertir colores
+// - Cada acción dispara un sonido
+// - Los píxeles se representan como rectángulos cuya escala depende
+//   de la luminosidad y la paleta de colores de la escena
+
 class Pantalla03 extends Pantalla {
   constructor(clickSound) { // pasamos el sonido al constructor
     super();

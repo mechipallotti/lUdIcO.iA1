@@ -1,4 +1,8 @@
-
+// Clase Pantalla02
+// Escena generativa con polígonos giratorios (algoritmo generativo)
+// - Interacción: el mouse altera el volumen y paneo de los sonidos
+// - Cada polígono tiene un oscilador que responde a la cercanía al centro
+// - Se usa p5.Gain para controlar el volumen global
 
 class Pantalla02 extends Pantalla {
     constructor() {
@@ -11,7 +15,7 @@ class Pantalla02 extends Pantalla {
         this.midiNotes = [
             48, 50, 52, 53, 55, 57, 59, 60, 62, 64,
             65, 67, 69, 71, 72, 74, 76, 77, 79, 81
-        ];
+        ]; 
 
         this.masterGain = new p5.Gain();
         this.masterGain.amp(0.52);
@@ -68,22 +72,21 @@ class Pantalla02 extends Pantalla {
         else if (keyCode === LEFT_ARROW) nav.previaPantalla();
     }
 
-onEnter() {
-    userStartAudio();             // desbloquea audio
-    this.cebolla.forEach(p => {
-        if (!p.started) {         // solo si no arrancó antes
-            p.osc.start();
-            p.started = true;
-        }
-    });
-    this.masterGain.connect();    // conecta al master
-    this.masterGain.amp(0.5, 0.2); // sube volumen suavemente
-}
+    onEnter() {
+        userStartAudio();             // desbloquea audio
+        this.cebolla.forEach(p => {
+            if (!p.started) {         // solo si no arrancó antes
+                p.osc.start();
+                p.started = true;
+            }
+        });
+        this.masterGain.connect();    // conecta al master
+        this.masterGain.amp(0.5, 0.2); // sube volumen suavemente
+    }
 
-onExit() {
-    this.masterGain.amp(0, 0.3); // baja volumen suavemente
-    // No hacer stop() de los osciladores
-}
+    onExit() {
+        this.masterGain.amp(0, 0.3);
+    }
 }
 
 class Poligonos {
@@ -96,7 +99,7 @@ class Poligonos {
 
         this.interaccion0 = false;
 
-        // variables para el sonido4
+        // variables para el sonido
 
 
         this.osc = new p5.Oscillator('sine');
@@ -108,7 +111,7 @@ class Poligonos {
         this.osc.connect(masterGain);
 
     }
-
+// Actualiza ángulo de rotación y controla volumen/pan según interacción
     update() {
         this.angle += (TWO_PI / this.tiempo) / 60;
 
@@ -161,7 +164,7 @@ class Poligonos {
     }
 
     interaccion() {
-        // Podés agregar interacción: invertir, cambiar paleta, etc.
+       
 
         let mx = mouseX - width / 2;
         let my = mouseY - height / 2;

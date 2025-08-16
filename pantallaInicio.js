@@ -1,3 +1,9 @@
+
+// Clase PantallaInicio
+// Muestra las miniaturas de cada escena y permite navegar
+// directamente a cualquiera de ellas con las teclas 1-4
+// o avanzar/retroceder con las flechas <- y ->
+
 class PantallaInicio extends Pantalla {
     constructor(){
         super();

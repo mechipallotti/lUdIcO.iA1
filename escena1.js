@@ -1,3 +1,11 @@
+// Clase Pantalla01
+// Escena de grilla generativa
+// - Grilla de círculos cuyo color depende de la distancia al centro
+// - Interacción: flecha arriba cambia la cantidad de círculos (aleatorio)
+//                flecha abajo cambia el parámetro de forma (aleatorio)
+// - Se reproduce un click al interactuar
+
+
 class Pantalla01 extends Pantalla {
   constructor() {
     super();
@@ -58,7 +66,7 @@ class Pantalla01 extends Pantalla {
 
   keyPressed() {
     if (keyCode === UP_ARROW){ 
-      this.num = constrain(this.num + 5, 10, 100);
+      this.num = int(random(10, 200));
       this.clickSound.play(0, 1, 0.3);
     } else if (keyCode === DOWN_ARROW){ 
       this.forma = random(0.5, 2);

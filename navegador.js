@@ -22,13 +22,10 @@ class Navegador {
     let i = (this.indicePantalla + 1) % this.pantallas.length;
     this.indicePantalla = i;
     this.pantallaActual = this.pantallas[i];
-
-    // Llamo onEnter de la nueva pantalla
     if (this.pantallaActual?.onEnter) this.pantallaActual.onEnter();
   }
 
   previaPantalla(){
- // Llamo onExit de la pantalla actual
     if (this.pantallaActual?.onExit) this.pantallaActual.onExit();
 
     let i = this.indicePantalla - 1;
@@ -37,19 +34,16 @@ class Navegador {
     this.indicePantalla = i;
     this.pantallaActual = this.pantallas[i];
 
-    // Llamo onEnter de la nueva pantalla
     if (this.pantallaActual?.onEnter) this.pantallaActual.onEnter();
   }
 
   seleccionarPantalla(i){
   if (i >= 0 && i < this.pantallas.length) {
-      // Llamo onExit de la pantalla actual
       if (this.pantallaActual?.onExit) this.pantallaActual.onExit();
 
       this.indicePantalla = i;
       this.pantallaActual = this.pantallas[i];
 
-      // Llamo onEnter de la nueva pantalla
       if (this.pantallaActual?.onEnter) this.pantallaActual.onEnter();
     } else {
       print('ERROR INDICE DE PANTALLA FUERA DE RANGO');

@@ -1,3 +1,11 @@
+// -----------------------------------------------------
+// IA1 - TP1: Aplicación interactiva con escenas
+// Alumna: Mercedes Pallotti Miranda
+// Carrera: UNA Multimediales
+// Descripción: La aplicación permite recorrer tres escenas interactivas
+// con distintas técnicas generativas y de interacción. 
+// Se incluye pantalla inicial, pantallas de escenas y pantalla final.
+// -----------------------------------------------------
 
 let font;
 let miniatura1; let miniatura2; let miniatura3;
@@ -32,6 +40,9 @@ function setup() {
 
  p = new Pantalla03(clickSound);
  nav.agregarPantalla(p);
+
+ p = new PantallaFinal();
+nav.agregarPantalla(p);
 }
 
 function draw() {
